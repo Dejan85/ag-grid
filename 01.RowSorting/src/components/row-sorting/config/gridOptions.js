@@ -8,7 +8,8 @@ export const gridOptions = {
     {
       headerName: "Age",
       field: "age",
-      width: 90
+      width: 90,
+      sortingOrder: ["asc", "desc"]
     },
     {
       headerName: "Country",
@@ -18,14 +19,15 @@ export const gridOptions = {
     {
       headerName: "Year",
       field: "year",
-      width: 90
-      // sortingOrder: ["asc", "desc"]
+      width: 90,
+      sortingOrder: ["asc", "desc"]
     },
     {
       headerName: "Date",
       field: "date",
       width: 100,
-      unSortIcon: true
+      unSortIcon: true,
+      sortingOrder: ["asc", "desc"]
     },
     {
       headerName: "Sport",
@@ -37,12 +39,35 @@ export const gridOptions = {
     sortable: true // global sort enable
   },
 
-  sortingOrder: ["asc", "desc", null] // global default method sorting
+  sortingOrder: ["asc", "desc", null], // global default method sorting
+  multiSortKey: "ctrl"
 };
 
 export const defaultSortModel = [
   {
     colId: "athlete",
+    sort: "desc"
+  },
+  {
+    colId: "age",
+    sort: "asc"
+  },
+  {
+    colId: "country",
     sort: "asc"
   }
 ];
+
+export const SortOptionsGridOptions = props => {
+  const columnDefs = [];
+  const rowData = [];
+  const obj = {};
+
+  props.forEach(item => {
+    columnDefs.push({ headerName: item.colId, field: item.colId, width: 230 });
+    obj[`${item.colId}`] = item.sort;
+  });
+
+  rowData.push(obj);
+  return { columnDefs, rowData };
+};

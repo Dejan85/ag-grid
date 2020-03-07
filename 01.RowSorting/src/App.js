@@ -16,7 +16,7 @@ function App() {
       <Router>
         <Nav />
         <Switch>
-          <Route path="/rowsorting">
+          <Route exact path="/">
             <RowSorting />
           </Route>
         </Switch>
