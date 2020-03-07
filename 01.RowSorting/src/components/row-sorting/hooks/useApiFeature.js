@@ -40,7 +40,7 @@ const useApiFeature = () => {
 
     setSort(sort);
     gridApi.setSortModel(sort);
-    printSortStateToConsole();
+    setSortOptionsGridOptions(null);
   };
 
   // sort by Athlete desc method
@@ -53,7 +53,7 @@ const useApiFeature = () => {
     ];
     setSort(sort);
     gridApi.setSortModel(sort);
-    printSortStateToConsole();
+    setSortOptionsGridOptions(null);
   };
 
   // sort by country then sport method
@@ -70,7 +70,7 @@ const useApiFeature = () => {
     ];
     setSort(sort);
     gridApi.setSortModel(sort);
-    printSortStateToConsole();
+    setSortOptionsGridOptions(null);
   };
 
   // sort by sport then country method
@@ -87,16 +87,18 @@ const useApiFeature = () => {
     ];
     setSort(sort);
     gridApi.setSortModel(sort);
-    printSortStateToConsole();
+    setSortOptionsGridOptions(null);
   };
 
   // print sort state to console method
   const printSortStateToConsole = () => {
     const options = gridApi.getSortModel(sort);
+    // console.log(sort);
 
     if (sortOptionsGridOptions) {
       return setSortOptionsGridOptions(null);
     }
+
     setSortOptionsGridOptions(SortOptionsGridOptions(options));
   };
 
