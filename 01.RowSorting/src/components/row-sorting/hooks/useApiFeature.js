@@ -90,7 +90,7 @@ const useApiFeature = () => {
     setSortOptionsGridOptions(null);
   };
 
-  // print sort state to console method
+  // show sort options table method
   const printSortStateToConsole = () => {
     const options = gridApi.getSortModel(sort);
     // console.log(sort);
@@ -102,6 +102,32 @@ const useApiFeature = () => {
     setSortOptionsGridOptions(SortOptionsGridOptions(options));
   };
 
+  // clear sort state method
+  const clearSort = () => {
+    gridApi.setSortModel(null);
+    setSortOptionsGridOptions(null);
+  };
+
+  // save sort method
+  const saveSortOptions = () => {
+    const options = gridApi.getSortModel();
+    localStorage.setItem("grid-options", JSON.stringify(options));
+    setSortOptionsGridOptions(null);
+  };
+
+  // restore from save method
+  const restoreFromSave = () => {
+    const options = localStorage.getItem("grid-options");
+    gridApi.setSortModel(JSON.parse(options));
+    setSortOptionsGridOptions(null);
+  };
+
+  // remove all setings
+  const removeAllSetings = () => {
+    localStorage.removeItem("grid-options");
+    clearSort();
+  };
+
   return {
     sortOptionsGridOptions,
     onGridReady,
@@ -110,7 +136,11 @@ const useApiFeature = () => {
     sortByAthleteDesc,
     sortByCountryThenSport,
     sortBySportThenCountry,
-    printSortStateToConsole
+    printSortStateToConsole,
+    clearSort,
+    saveSortOptions,
+    restoreFromSave,
+    removeAllSetings
   };
 };
 

@@ -21,7 +21,11 @@ const RowSorting = () => {
     sortByAthleteDesc,
     sortByCountryThenSport,
     sortBySportThenCountry,
-    printSortStateToConsole
+    printSortStateToConsole,
+    clearSort,
+    saveSortOptions,
+    restoreFromSave,
+    removeAllSetings
   } = useApiFeature();
 
   return (
@@ -43,6 +47,10 @@ const RowSorting = () => {
                 ? "Disabled sort options table"
                 : "Sort options table"}
             </button>
+            <button onClick={clearSort}>Clear sort</button>
+            <button onClick={saveSortOptions}>Save sort</button>
+            <button onClick={restoreFromSave}>Restore from save</button>
+            <button onClick={removeAllSetings}>Remove all setings</button>
           </div>
           <div className="grid__sort-options">
             {sortOptionsGridOptions && (
