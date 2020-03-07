@@ -1,28 +1,26 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./style/main.scss";
 
-// Grid
-import { AgGridReact } from "ag-grid-react";
+// Grid css
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
-// config
-import { gridOptions } from "./components/gridOptions";
-
-// hooks
-import useOnGridReady from "./hooks/useOnGridReady";
+// components
+import Nav from "./components/nav/Nav";
+import RowSorting from "./components/row-sorting/RowSorting";
 
 function App() {
-  const { onGridReady, rowData } = useOnGridReady();
-
   return (
-    <div className="ag-theme-balham" style={{ height: "500px", width: "100%" }}>
-      <AgGridReact
-        gridOptions={gridOptions}
-        rowSelection="multiple"
-        onGridReady={onGridReady}
-        rowData={rowData}
-        animateRows={true}
-      />
+    <div className="app">
+      <Router>
+        <Nav />
+        <Switch>
+          <Route path="/rowsorting">
+            <RowSorting />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
