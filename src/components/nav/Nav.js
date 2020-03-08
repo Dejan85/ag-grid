@@ -29,16 +29,6 @@ const Nav = () => {
             Row Dragging
           </NavLink>
         </li>
-        <li className="nav__li">
-          <NavLink
-            exact={true}
-            className="nav__link"
-            to="/sara"
-            activeClassName="active"
-          >
-            Treba da uradim
-          </NavLink>
-        </li>
       </ul>
     </div>
   );

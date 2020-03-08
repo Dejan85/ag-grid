@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getDataAction } from "../../../../../redux/slice/slice";
 import {
   defaultSortModel,
   SortOptionsGridOptions
@@ -9,22 +11,18 @@ const useApiFeature = () => {
   const [gridApi, setGridApi] = useState();
   const [sort, setSort] = useState();
   const [sortOptionsGridOptions, setSortOptionsGridOptions] = useState();
+  const dispatch = useDispatch();
+  const { data } = useSelector(state => state);
 
   // on grid method
   const onGridReady = params => {
     const gridApi = params.api;
     setGridApi(gridApi);
 
-    fetch(
-      "https://raw.githubusercontent.com/ag-grid/ag-grid/master/packages/ag-grid-docs/src/olympicWinnersSmall.json"
-    )
-      .then(res => res.json())
-      .then(response => {
-        setRowData(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    dispatch(getDataAction());
+    setRowData(data);
+
+    console.log(data);
 
     gridApi.setSortModel(defaultSortModel); // when grid load, defaul sorting method
   };
