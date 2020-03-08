@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 // config
 import { gridOptions } from "./config/gridOptions";
@@ -25,7 +25,8 @@ const RowSorting = () => {
     clearSort,
     saveSortOptions,
     restoreFromSave,
-    removeAllSetings
+    removeAllSetings,
+    postSort
   } = useApiFeature();
 
   return (
@@ -63,6 +64,7 @@ const RowSorting = () => {
             onGridReady={onGridReady}
             rowData={rowData}
             animateRows={true}
+            postSort={postSort}
           />
         </div>
       </div>
@@ -70,4 +72,4 @@ const RowSorting = () => {
   );
 };
 
-export default RowSorting;
+export default memo(RowSorting);

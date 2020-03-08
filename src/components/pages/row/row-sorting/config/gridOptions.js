@@ -8,7 +8,6 @@ export const gridOptions = {
     {
       headerName: "Age",
       field: "age",
-      width: 90,
       sortingOrder: ["asc", "desc"]
     },
     {
@@ -19,7 +18,6 @@ export const gridOptions = {
     {
       headerName: "Year",
       field: "year",
-      width: 90,
       sortingOrder: ["asc", "desc"]
     },
     {
@@ -36,6 +34,7 @@ export const gridOptions = {
     }
   ],
   defaultColDef: {
+    width: 90,
     sortable: true // global sort enable
   },
 

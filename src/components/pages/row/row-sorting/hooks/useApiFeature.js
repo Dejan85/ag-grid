@@ -128,6 +128,26 @@ const useApiFeature = () => {
     clearSort();
   };
 
+  // post sort method
+  const postSort = rowNodes => {
+    function isIreland(node) {
+      return node.data.country === "Ireland";
+    }
+
+    function move(toIndex, fromIndex) {
+      rowNodes.splice(toIndex, 0, rowNodes.splice(fromIndex, 1)[0]);
+    }
+
+    let nextInsertPos = 0;
+
+    for (let i = 0; i < rowNodes.length; i++) {
+      if (isIreland(rowNodes[i])) {
+        move(nextInsertPos, i);
+        nextInsertPos++;
+      }
+    }
+  };
+
   return {
     sortOptionsGridOptions,
     onGridReady,
@@ -140,7 +160,8 @@ const useApiFeature = () => {
     clearSort,
     saveSortOptions,
     restoreFromSave,
-    removeAllSetings
+    removeAllSetings,
+    postSort
   };
 };
 
