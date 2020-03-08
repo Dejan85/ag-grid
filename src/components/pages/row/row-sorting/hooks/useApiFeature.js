@@ -1,28 +1,21 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getDataAction } from "../../../../../redux/slice/slice";
 import {
   defaultSortModel,
   SortOptionsGridOptions
 } from "../config/gridOptions";
 
-const useApiFeature = () => {
+const useApiFeature = data => {
   const [rowData, setRowData] = useState();
   const [gridApi, setGridApi] = useState();
   const [sort, setSort] = useState();
   const [sortOptionsGridOptions, setSortOptionsGridOptions] = useState();
-  const dispatch = useDispatch();
-  const { data } = useSelector(state => state);
 
   // on grid method
   const onGridReady = params => {
     const gridApi = params.api;
     setGridApi(gridApi);
 
-    dispatch(getDataAction());
     setRowData(data);
-
-    console.log(data);
 
     gridApi.setSortModel(defaultSortModel); // when grid load, defaul sorting method
   };

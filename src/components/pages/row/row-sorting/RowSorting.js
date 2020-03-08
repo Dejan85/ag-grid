@@ -1,4 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataAction } from "../../../../redux/slice/slice";
 
 // config
 import { gridOptions } from "./config/gridOptions";
@@ -13,6 +15,8 @@ import { AgGridReact } from "ag-grid-react";
 import SortOptionsGrid from "./SortOptionsGrid";
 
 const RowSorting = () => {
+  const { data } = useSelector(state => state);
+
   const {
     sortOptionsGridOptions,
     onGridReady,
@@ -27,7 +31,13 @@ const RowSorting = () => {
     restoreFromSave,
     removeAllSetings,
     postSort
-  } = useApiFeature();
+  } = useApiFeature(data);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDataAction());
+  }, []);
 
   return (
     <div className="grid">
@@ -58,14 +68,16 @@ const RowSorting = () => {
               <SortOptionsGrid gridOptions={sortOptionsGridOptions} />
             )}
           </div>
-          <AgGridReact
-            gridOptions={gridOptions}
-            rowSelection="multiple"
-            onGridReady={onGridReady}
-            rowData={rowData}
-            animateRows={true}
-            postSort={postSort}
-          />
+          {data && (
+            <AgGridReact
+              gridOptions={gridOptions}
+              rowSelection="multiple"
+              onGridReady={onGridReady}
+              rowData={rowData}
+              animateRows={true}
+              postSort={postSort}
+            />
+          )}
         </div>
       </div>
     </div>
