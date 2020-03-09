@@ -16,10 +16,20 @@ const Nav = () => {
             activeClassName="active"
             to="/"
           >
-            Row Sorting
+            Column Header
           </NavLink>
         </li>
         <li className="nav__li">
+          <NavLink
+            exact={true}
+            className="nav__link"
+            activeClassName="active"
+            to="/rowsorting"
+          >
+            Row Sorting
+          </NavLink>
+        </li>
+        {/* <li className="nav__li">
           <NavLink
             exact={true}
             className="nav__link"
@@ -28,7 +38,7 @@ const Nav = () => {
           >
             Row Dragging
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

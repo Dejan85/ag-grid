@@ -4,6 +4,7 @@ import "./style/main.scss";
 
 // components
 import Nav from "./components/nav/Nav";
+import ColumnHeader from './components/pages/columns/column-headers/ColumnHeaders'
 import RowSorting from "./components/pages/row/row-sorting/RowSorting";
 import RowDragging from "./components/pages/row/row-dragging/RowDragging";
 
@@ -33,6 +34,9 @@ function App() {
           <Nav />
           <Switch>
             <Route exact path="/">
+              <ColumnHeader />
+            </Route>
+            <Route exact path="/rowsorting">
               <RowSorting />
             </Route>
             <Route exact path="/rowdragging">

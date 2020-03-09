@@ -37,7 +37,7 @@ const RowSorting = () => {
 
   useEffect(() => {
     dispatch(getDataAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="grid">
